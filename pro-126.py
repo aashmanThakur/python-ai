@@ -17,7 +17,7 @@ time.sleep(10)
 
 def scrap():
     headers = ["V-Mag","Proper name","Bayer-designation","distance","Spectral Class","Mass","Radius","luminosity"]
-    planet_data=[]
+    star_data=[]
     soup = BeautifulSoup(browser.page_source, "html.parser")
     for tr_tag in soup.find_all("tr"):
             td_tags = tr_tag.find_all("td")
@@ -30,10 +30,10 @@ def scrap():
                         temp_list.append(td_tag.contents[0])
                     except:
                         temp_list.append("")
-            planet_data.append(temp_list)
+            star_data.append(temp_list)
     with open("scrapper_2.csv", "w") as f:
             csvwriter = csv.writer(f)
             csvwriter.writerow(headers)
-            csvwriter.writerows(planet_data)
+            csvwriter.writerows(star_data)
     
 scrap()
